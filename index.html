@@ -3,13 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="1; URL=https://zoom.us/" />
+    <!-- meta http-equiv="refresh" content="1; URL=https://zoom.us/" /--> <!-- Testing -->
   </head>
 
-  <body onload="document.forms['zoom-redirect'].submit()">
+  <body onload="document.forms['zoomRedirect'].submit()">
     <p>Redirecting...</p>
-    <form method=post action="https://hooks.zapier.com/hooks/catch/551378/okqyta4/" name="zoom-redirect">
+    <form id="zoomRedirect" name="zoomRedirect">
         <input type=hidden name="Zoom" value="Positive">
     </form>
+
+    <!-- Load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    // POST form data to zapier on submit
+      $("#zoomRedirect").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+          url: "https://hooks.zapier.com/hooks/catch/551378/okqyta4/",
+          type: "post",
+          data: $("#myForm").serialize(),
+          success: function() {
+            // Redirect to another success page
+            window.location = "http://zoom.us";
+          }
+        });
+      });
+    </script>
+
   </body>
 </html>
