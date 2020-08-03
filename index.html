@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Redirecting...</title>
-    <!-- meta http-equiv="refresh" content="1; URL=https://zoom.us/" /--> <!-- Testing -->
   </head>
+  <body>
 
-  <body onload="document.forms['zoomRedirect'].submit()">
-    <p>Redirecting...</p>
-    <form id="zoomRedirect-ajax" name="zoomRedirect">
-        <input type=hidden name="Zoom" value="Positive">
+    <form id="myForm" name="myFormJS">
+      <input type="hidden" name="Zoom" value="Test">
     </form>
 
     <!-- Load jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+     $("#myForm").submit();
+    });
+
     // POST form data to zapier on submit
-      $("#zoomRedirect-ajax").Zoom(function(e) {
-        e.preventDefault();
-        $.ajax({
-          url: "https://hooks.zapier.com/hooks/catch/551378/okqyta4/",
-          type: "post",
-          data: $("#zoomRedirect-ajax").serialize(),
-          success: function() {
-            // Redirect to another success page
-            window.location = "http://zoom.us";
+    $('#myForm').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+          url:'https://hooks.zapier.com/hooks/catch/551378/okedhkm/',
+          type:'post',
+          data:$('#myForm').serialize(),
+          success:function(){
+            // Change URL to page you would like to send the user after form is submitted
+            window.location = "http://google.com";
           }
-        });
       });
-    </script>
+    });
+  </script>
 
   </body>
 </html>
